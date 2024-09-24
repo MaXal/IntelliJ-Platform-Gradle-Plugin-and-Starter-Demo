@@ -12,7 +12,7 @@ import kotlin.io.path.Path
 class PluginTest {
     @Test
     fun simpleTest() {
-        Starter.newContext("testExample", TestCase(IdeProductProvider.IU, NoProject) ).apply {
+        Starter.newContext("testExample", TestCase(IdeProductProvider.IC, NoProject).withVersion("2024.2")).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
         }.runIdeWithDriver().useDriverAndCloseIde {

@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaUltimate("LATEST-EAP-SNAPSHOT")
+        intellijIdeaCommunity("2024.2")
         instrumentationTools()
     }
 
@@ -32,6 +32,10 @@ dependencies {
     testImplementation("com.jetbrains.intellij.driver:driver-sdk:LATEST-EAP-SNAPSHOT")
     testImplementation("com.jetbrains.intellij.driver:driver-model:LATEST-EAP-SNAPSHOT")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 tasks.test {
