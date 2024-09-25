@@ -34,6 +34,15 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
 }
 
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild.set("242")
+            untilBuild.set("243.*")
+        }
+    }
+}
+
 kotlin {
     jvmToolchain(17)
 }
