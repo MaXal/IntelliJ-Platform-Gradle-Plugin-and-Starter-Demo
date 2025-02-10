@@ -32,6 +32,7 @@ dependencies {
     testImplementation("com.jetbrains.intellij.driver:driver-sdk:LATEST-EAP-SNAPSHOT")
     testImplementation("com.jetbrains.intellij.driver:driver-model:LATEST-EAP-SNAPSHOT")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.kodein.di:kodein-di-jvm:7.20.2")
 }
 
 intellijPlatform {
