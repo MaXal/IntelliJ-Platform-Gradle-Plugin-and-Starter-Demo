@@ -1,21 +1,34 @@
 import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.openFile
-import com.intellij.driver.sdk.ui.components.button
-import com.intellij.driver.sdk.ui.components.dialog
-import com.intellij.driver.sdk.ui.components.ideFrame
-import com.intellij.driver.sdk.ui.components.welcomeScreen
+import com.intellij.driver.sdk.ui.components.common.ideFrame
+import com.intellij.driver.sdk.ui.components.common.welcomeScreen
+import com.intellij.driver.sdk.ui.components.elements.button
+import com.intellij.driver.sdk.ui.components.elements.dialog
 import com.intellij.driver.sdk.ui.shouldBe
 import com.intellij.driver.sdk.waitForIndicators
+import com.intellij.ide.starter.config.ConfigurationStorage
+import com.intellij.ide.starter.config.splitMode
+import com.intellij.ide.starter.di.di
+import com.intellij.ide.starter.driver.driver.remoteDev.RemDevDriverRunner
+import com.intellij.ide.starter.driver.engine.DriverRunner
 import com.intellij.ide.starter.driver.engine.runIdeWithDriver
 import com.intellij.ide.starter.ide.IdeProductProvider
 import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.plugins.PluginConfigurator
 import com.intellij.ide.starter.project.GitHubProject
 import com.intellij.ide.starter.project.NoProject
+import com.intellij.ide.starter.runner.RemDevTestContainer
 import com.intellij.ide.starter.runner.Starter
+import com.intellij.ide.starter.runner.TestContainer
+import com.intellij.ide.starter.runner.TestContainerImpl
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
+import org.kodein.di.DI
+import org.kodein.di.bindProvider
+import kotlin.booleanArrayOf
 
 class PluginTest {
     @Test
@@ -40,8 +53,17 @@ class PluginTest {
         }
     }
 
-    @Test
-    fun oneMoreTest() {
+    @ParameterizedTest(name = "split-mode={0}")
+    @ValueSource(booleans = [false, true])
+    fun oneMoreTest(splitMode: Boolean) {
+        if (splitMode) {
+            di = DI {
+                extend(di)
+                bindProvider<TestContainer<*>>(overrides = true) { TestContainer.newInstance<RemDevTestContainer>() }
+                bindProvider<DriverRunner> { RemDevDriverRunner() }
+            }
+        }
+
         Starter.newContext(
             "oneMoreTest",
             TestCase(
