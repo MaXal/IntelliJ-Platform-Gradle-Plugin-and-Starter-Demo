@@ -25,12 +25,12 @@ dependencies {
         instrumentationTools()
     }
 
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-squashed:LATEST-EAP-SNAPSHOT")
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-junit5:LATEST-EAP-SNAPSHOT")
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-driver:LATEST-EAP-SNAPSHOT")
-    testImplementation("com.jetbrains.intellij.driver:driver-client:LATEST-EAP-SNAPSHOT")
-    testImplementation("com.jetbrains.intellij.driver:driver-sdk:LATEST-EAP-SNAPSHOT")
-    testImplementation("com.jetbrains.intellij.driver:driver-model:LATEST-EAP-SNAPSHOT")
+    testImplementation("com.jetbrains.intellij.tools:ide-starter-squashed:243.24978.46")
+    testImplementation("com.jetbrains.intellij.tools:ide-starter-junit5:243.24978.46")
+    testImplementation("com.jetbrains.intellij.tools:ide-starter-driver:243.24978.46")
+    testImplementation("com.jetbrains.intellij.driver:driver-client:243.24978.46")
+    testImplementation("com.jetbrains.intellij.driver:driver-sdk:243.24978.46")
+    testImplementation("com.jetbrains.intellij.driver:driver-model:243.24978.46")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("org.kodein.di:kodein-di-jvm:7.20.2")
 }
@@ -52,4 +52,6 @@ tasks.test {
     dependsOn("buildPlugin")
     systemProperty("path.to.build.plugin", tasks.buildPlugin.get().archiveFile.get().asFile.absolutePath)
     useJUnitPlatform()
+
+    jvmArgs(*(jvmArgs.orEmpty().toTypedArray() + "-Djava.rmi.server.useCodebaseOnly=false"))
 }
