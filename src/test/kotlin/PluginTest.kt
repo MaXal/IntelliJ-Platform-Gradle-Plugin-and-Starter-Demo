@@ -1,9 +1,6 @@
-import com.intellij.driver.client.service
-import com.intellij.driver.client.utility
-import com.intellij.driver.sdk.singleProject
-import com.intellij.driver.sdk.waitForProjectOpen
-import com.intellij.ide.starter.ci.CIServer
-import com.intellij.ide.starter.ci.NoCIServer
+import com.intellij.driver.client.*
+import com.intellij.driver.sdk.*
+import com.intellij.ide.starter.ci.*
 import com.intellij.ide.starter.di.di
 import com.intellij.ide.starter.driver.engine.runIdeWithDriver
 import com.intellij.ide.starter.ide.IdeProductProvider
@@ -11,34 +8,12 @@ import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.plugins.PluginConfigurator
 import com.intellij.ide.starter.project.GitHubProject
 import com.intellij.ide.starter.runner.Starter
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.fail
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
+import org.junit.jupiter.api.*
+import org.kodein.di.*
 import kotlin.io.path.Path
 
 
 class PluginTest {
-
-    init {
-        di = DI {
-            extend(di)
-            bindSingleton<CIServer>(overrides = true) {
-                object : CIServer by NoCIServer {
-                    override fun reportTestFailure(
-                        testName: String,
-                        message: String,
-                        details: String,
-                        linkToLogs: String?
-                    ) {
-                        fail { "$testName fails: $message. \n$details" }
-                    }
-                }
-            }
-        }
-    }
-
     @Test
     fun testStubs() {
         Starter.newContext(
