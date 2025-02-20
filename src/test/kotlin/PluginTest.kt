@@ -1,9 +1,9 @@
 import com.intellij.driver.sdk.invokeAction
-import com.intellij.driver.sdk.ui.components.common.ideFrame
-import com.intellij.driver.sdk.ui.components.common.popups.searchEverywherePopup
-import com.intellij.driver.sdk.ui.components.elements.actionButtonByXpath
-import com.intellij.driver.sdk.ui.components.elements.jBlist
-import com.intellij.driver.sdk.ui.components.elements.popup
+import com.intellij.driver.sdk.ui.components.actionButtonByXpath
+import com.intellij.driver.sdk.ui.components.ideFrame
+import com.intellij.driver.sdk.ui.components.jBlist
+import com.intellij.driver.sdk.ui.components.popup
+import com.intellij.driver.sdk.ui.components.searchEverywherePopup
 import com.intellij.driver.sdk.ui.present
 import com.intellij.driver.sdk.ui.shouldBe
 import com.intellij.driver.sdk.ui.xQuery
@@ -69,7 +69,7 @@ class PluginTest {
                     repoRelativeUrl = "JetBrains/ij-perf-report-aggregator"
                 )
             )
-                .withVersion("2024.2")
+                .withVersion("2024.3")
         ).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
@@ -92,7 +92,7 @@ class PluginTest {
                 IdeProductProvider.IC,
                 GitHubProject.fromGithub(branchName = "master",
                     repoRelativeUrl = "JetBrains/ij-perf-report-aggregator"))
-                .withVersion("2024.2")
+                .withVersion("2024.3")
         ).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
