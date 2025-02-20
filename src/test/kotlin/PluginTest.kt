@@ -39,7 +39,7 @@ class PluginTest {
 
     @Test
     fun simpleTestWithoutProject() {
-        Starter.newContext(testName = "testExample", TestCase(IdeProductProvider.IC, projectInfo = NoProject).withVersion("2024.2")).apply {
+        Starter.newContext(testName = "testExample", TestCase(IdeProductProvider.IC, projectInfo = NoProject).withVersion("2024.3")).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
         }.runIdeWithDriver().useDriverAndCloseIde {
@@ -54,7 +54,7 @@ class PluginTest {
             TestCase(
                 IdeProductProvider.IC,
                 GitHubProject.fromGithub(branchName = "master", repoRelativeUrl = "JetBrains/ij-perf-report-aggregator")
-            ).withVersion("2024.2")
+            ).withVersion("2024.3")
         ).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
