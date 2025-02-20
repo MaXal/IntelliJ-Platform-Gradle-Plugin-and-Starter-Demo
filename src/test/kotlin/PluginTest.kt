@@ -22,7 +22,7 @@ class PluginTest {
                     branchName = "master",
                     repoRelativeUrl = "JetBrains/ij-perf-report-aggregator"
                 )
-            ).withVersion("2024.2")
+            ).withVersion("2024.3")
         ).apply {
             val pathToPlugin = System.getProperty("path.to.build.plugin")
             PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))

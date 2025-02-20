@@ -7,7 +7,7 @@ import org.jetbrains.intellij.platform.gradle.models.*
 import org.jetbrains.intellij.platform.gradle.tasks.*
 
 plugins {
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
     kotlin("jvm") version "2.0.0"
 }
 
@@ -21,16 +21,10 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity("2024.2")
-        instrumentationTools()
+        intellijIdeaCommunity("2024.3")
+        testFramework(TestFrameworkType.Starter)
     }
 
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-squashed:243.24978.46")
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-junit5:243.24978.46")
-    testImplementation("com.jetbrains.intellij.tools:ide-starter-driver:243.24978.46")
-    testImplementation("com.jetbrains.intellij.driver:driver-client:243.24978.46")
-    testImplementation("com.jetbrains.intellij.driver:driver-sdk:243.24978.46")
-    testImplementation("com.jetbrains.intellij.driver:driver-model:243.24978.46")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("org.kodein.di:kodein-di-jvm:7.20.2")
 }
@@ -38,7 +32,7 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild.set("242")
+            sinceBuild.set("243")
             untilBuild.set("243.*")
         }
     }
