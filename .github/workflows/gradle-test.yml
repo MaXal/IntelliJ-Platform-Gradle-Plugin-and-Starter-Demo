@@ -1,4 +1,4 @@
-name: Gradle test
+name: Integration tests
 
 on:
   push:
@@ -21,11 +21,16 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
       - name: Run tests
         run: ./gradlew clean build test
-      - name: Store reports
+      - name: Upload build reports
         uses: actions/upload-artifact@v4
         with:
-          name: reports
+          name: build
           path: |
             **/build/reports/
             **/build/test-results/
-            **/out/ide-tests/tests/
+
+      - name: Upload IDE test logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: '**/out/ide-tests/tests/*/log'
