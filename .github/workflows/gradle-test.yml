@@ -17,10 +17,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: clean build test
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Run tests
+        run: ./gradlew clean build test
       - name: Store reports
         uses: actions/upload-artifact@v4
         with:
