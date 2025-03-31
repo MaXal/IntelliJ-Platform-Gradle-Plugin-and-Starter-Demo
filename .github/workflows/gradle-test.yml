@@ -1,11 +1,5 @@
 name: Gradle test
 
-on:
-  push:
-    branches: [ "blog-part4" ]
-  pull_request:
-    branches: [ "blog-part4" ]
-
 permissions:
   contents: read
 
@@ -13,9 +7,9 @@ jobs:
   runExamples:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
