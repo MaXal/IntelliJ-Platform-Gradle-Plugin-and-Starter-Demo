@@ -28,9 +28,8 @@ jobs:
           path: |
             **/build/reports/
             **/build/test-results/
-
       - name: Upload IDE test logs
         uses: actions/upload-artifact@v4
         with:
           name: logs
-          path: '**/out/ide-tests/tests/*/log'
+          path: '**/out/ide-tests/tests/**/log'
