@@ -2,9 +2,9 @@ name: Gradle test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "blog-part4" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "blog-part4" ]
 
 permissions:
   contents: read
