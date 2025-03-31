@@ -28,3 +28,4 @@ jobs:
           path: |
             **/build/reports/
             **/build/test-results/
+            **/out/ide-tests/tests/
